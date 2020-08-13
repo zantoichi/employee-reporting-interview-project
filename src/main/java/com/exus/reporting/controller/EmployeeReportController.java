@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(API_REPORT_URL)
 @RequiredArgsConstructor
-// todo use dto
 final class EmployeeReportController {
 
   private final FindEmployeeReportsUseCase findEmployeeReportsUseCase;
