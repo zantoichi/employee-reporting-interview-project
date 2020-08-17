@@ -1,6 +1,6 @@
 package com.exus.reporting.controller;
 
-import static com.exus.reporting.configuration.ApplicationURLS.API_REPORT_URL;
+import static com.exus.reporting.configuration.ApplicationURLS.API_REPORTS_URL;
 import static com.exus.reporting.factory.EmployeeReportMother.defaultEmployeeReportWithId;
 import static org.mockito.BDDMockito.any;
 import static org.mockito.BDDMockito.given;
@@ -17,8 +17,8 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-@WebMvcTest(EmployeeReportController.class)
-class EmployeeReportControllerTest {
+@WebMvcTest(GetEmployeeReportController.class)
+class GetEmployeeReportControllerTest {
 
   @Autowired private MockMvc mockMvc;
 
@@ -33,7 +33,7 @@ class EmployeeReportControllerTest {
         .willReturn(new PageImpl<>(List.of(defaultEmployeeReportWithId().build())));
 
     mockMvc
-        .perform(get(API_REPORT_URL + "/{username}", username).accept(MediaType.APPLICATION_JSON))
+        .perform(get(API_REPORTS_URL + "/{username}", username).accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk());
   }
 
@@ -48,7 +48,7 @@ class EmployeeReportControllerTest {
 
     mockMvc
         .perform(
-            get(API_REPORT_URL + "/{username}/{priority}", username, priority)
+            get(API_REPORTS_URL + "/{username}/{priority}", username, priority)
                 .accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk());
   }

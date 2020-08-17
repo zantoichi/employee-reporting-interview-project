@@ -1,9 +1,9 @@
 package com.exus.reporting.domain;
 
+import static com.exus.reporting.factory.EmployeeReportMother.defaultEmployeeReportWithId;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
-import com.exus.reporting.factory.EmployeeReportMother;
 import org.junit.jupiter.api.Test;
 
 class EmployeeReportTest {
@@ -11,9 +11,7 @@ class EmployeeReportTest {
   @Test
   void constructorValidationThrowsExceptionWhenPropertyIsMissing() {
 
-    Throwable thrown =
-        catchThrowable(
-            () -> EmployeeReportMother.defaultEmployeeReportWithId().priority(null).build());
+    Throwable thrown = catchThrowable(() -> defaultEmployeeReportWithId().priority(null).build());
 
     assertThat(thrown)
         .isInstanceOf(NullPointerException.class)
@@ -22,7 +20,7 @@ class EmployeeReportTest {
 
   @Test
   void employeeIsConstructedWhenNoPropertyIsMissing() {
-    EmployeeReport employeeReport = EmployeeReportMother.defaultEmployeeReportWithId().build();
+    EmployeeReport employeeReport = defaultEmployeeReportWithId().build();
 
     assertThat(employeeReport).isNotNull();
   }

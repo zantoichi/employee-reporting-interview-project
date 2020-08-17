@@ -3,6 +3,7 @@ package com.exus.reporting.domain;
 import static java.util.Objects.requireNonNull;
 import static java.util.Optional.ofNullable;
 
+import com.exus.reporting.application.SaveEmployeeReportUseCase.SaveEmployeeReportCommand;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -59,6 +60,14 @@ public final class EmployeeReport {
     this.description = requireNonNull(description, "Description cannot be null.");
     this.priority = requireNonNull(priority, "Priority cannot be null.");
     this.creationDate = creationDate;
+  }
+
+  public static EmployeeReport fromCommand(SaveEmployeeReportCommand command) {
+    return EmployeeReport.builder()
+        .description(command.getDescription())
+        .priority(command.getPriority())
+        .title(command.getTitle())
+        .build();
   }
 
   public Optional<UUID> getReportId() {

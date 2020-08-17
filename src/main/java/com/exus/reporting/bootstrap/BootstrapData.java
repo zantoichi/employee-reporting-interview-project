@@ -140,7 +140,7 @@ final class BootstrapData {
             .lastName("lastname")
             .title(Title.JUNIOR)
             .userName("username")
-            .reports(
+            .reportIds(
                 Set.of(report1.getReportId().orElseThrow(), report2.getReportId().orElseThrow()))
             .build());
 
@@ -153,7 +153,7 @@ final class BootstrapData {
             .lastName("lastname2")
             .title(Title.SENIOR)
             .userName("username2")
-            .reports(
+            .reportIds(
                 Set.of(
                     report3.getReportId().orElseThrow(),
                     report4.getReportId().orElseThrow(),

@@ -6,12 +6,14 @@ import com.exus.reporting.domain.Department;
 import com.exus.reporting.domain.Employee;
 import com.exus.reporting.domain.Gender;
 import com.exus.reporting.domain.Title;
-import java.util.Set;
+import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.UUID;
 
 public final class EmployeeMother {
 
   public static EmployeeBuilder defaultEmployeeWithId() {
+
     return Employee.builder()
         .employeeId(UUID.randomUUID())
         .department(Department.CALL_CENTER)
@@ -21,6 +23,7 @@ public final class EmployeeMother {
         .lastName("lastname")
         .title(Title.JUNIOR)
         .userName("username")
-        .reports(Set.of());
+        .reportIds(new HashSet<>())
+        .creationDate(LocalDateTime.now());
   }
 }

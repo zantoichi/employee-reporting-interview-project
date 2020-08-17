@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static java.util.Objects.requireNonNullElseGet;
 import static java.util.Optional.ofNullable;
 
+import com.exus.reporting.application.SaveEmployeeUseCase.SaveEmployeeCommand;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -69,7 +70,7 @@ public final class Employee {
       Gender gender,
       Title title,
       Department department,
-      Set<UUID> reports,
+      Set<UUID> reportIds,
       LocalDateTime creationDate) {
 
     this.creationDate = creationDate;
@@ -81,14 +82,27 @@ public final class Employee {
     this.gender = requireNonNull(gender, "Gender cannot be null.");
     this.title = requireNonNull(title, "Title cannot be null.");
     this.department = requireNonNull(department, "Department cannot be null.");
-    this.reportIds = requireNonNullElseGet(reports, HashSet::new);
+    this.reportIds = requireNonNullElseGet(reportIds, HashSet::new);
+  }
+
+  public static Employee fromCommand(SaveEmployeeCommand command) {
+
+    return Employee.builder()
+        .department(command.getDepartment())
+        .email(command.getEmail())
+        .firstName(command.getFirstName())
+        .lastName(command.getLastName())
+        .gender(command.getGender())
+        .title(command.getTitle())
+        .userName(command.getUserName())
+        .build();
   }
 
   public Optional<UUID> getEmployeeId() {
     return ofNullable(employeeId);
   }
 
-  public Set<UUID> getReports() {
+  public Set<UUID> getReportIds() {
     return Set.copyOf(reportIds);
   }
 

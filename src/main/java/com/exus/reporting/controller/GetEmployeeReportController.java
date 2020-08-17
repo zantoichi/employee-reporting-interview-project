@@ -1,6 +1,6 @@
 package com.exus.reporting.controller;
 
-import static com.exus.reporting.configuration.ApplicationURLS.API_REPORT_URL;
+import static com.exus.reporting.configuration.ApplicationURLS.API_REPORTS_URL;
 
 import com.exus.reporting.application.FindEmployeeReportsUseCase;
 import com.exus.reporting.domain.EmployeeReport;
@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(API_REPORT_URL)
+@RequestMapping(API_REPORTS_URL)
 @RequiredArgsConstructor
-final class EmployeeReportController {
+final class GetEmployeeReportController {
 
   private final FindEmployeeReportsUseCase findEmployeeReportsUseCase;
 
